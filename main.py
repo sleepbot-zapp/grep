@@ -12,8 +12,7 @@ from search import search
 @click.option("-v", is_flag=True)
 @click.argument('pattern', required=True)
 def grep(path, c, h, l, n, v, pattern):
-    data = search(path=path, pattern=pattern)
-    if v: pass 
+    data = search(path=path, pattern=pattern, inverse=True) if v else search(path=path, pattern=pattern) 
     if c:
         click.echo(len(data[0]))
     elif h:
@@ -31,7 +30,7 @@ def grep(path, c, h, l, n, v, pattern):
     else:
         for i in data[0]:
             if not i.startswith(path):
-                click.echo(i[i.index(":")+1:])
+                click.echo(i[i.index(":")+2:])
             else:
                 click.echo(Fore.BLUE+i+Fore.RESET)
 
