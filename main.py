@@ -31,8 +31,6 @@ def grep(path, c, h, l, n, v, pattern):
         for i in data[0]:
             if not i.startswith(path):
                 click.echo(i[i.index(":")+2:])
-            else:
-                click.echo(Fore.BLUE+i+Fore.RESET)
 
 if __name__ == '__main__':
     grep()
