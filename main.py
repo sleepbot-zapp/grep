@@ -13,13 +13,12 @@ from search import search
 @click.option("-w", is_flag=True)
 @click.argument("pattern", required=True)
 def grep(path, c, h, l, n, v, w, pattern):
-    # pattern = rf" {pattern} " if w else pattern
+    pattern = rf"(?<!\w){pattern}(?!\w)" if w else pattern
     data = (
         search(path=path, pattern=pattern, inverse=True)
         if v
         else search(path=path, pattern=pattern)
     )
-    # data = search(path=path, pattern=pattern, inverse=False)
     if c:
         click.echo(len(data[0]))
     elif h:
