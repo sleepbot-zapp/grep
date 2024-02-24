@@ -21,7 +21,7 @@ def search_in_file(file, needle: str, is_casinsesitive=False):
         lines = f.readlines()
         for i in lines:
             i = i.replace("\n", "") if needle != r"\n" else i
-            x = re.finditer(rf"{needle}", i if not is_casinsesitive else i.lower())
+            x = re.finditer(rf"{needle}", i)
             s = list(x)
             if s:
                 for j in s:
