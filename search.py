@@ -1,12 +1,26 @@
 import os
 from search_in_file import search_in_file
 
-def innersearch_file(path, pattern, index):
+
+def innersearch_file(path: str, pattern: str):
+    """
+    Searches for a specific pattern in a single file
+
+    Args:
+        path (str): takes a file or directory path
+        pattern (str): takes a regex string as argument
+
+    Returns:
+        tupple[list[str], list[str], list[str]]:
+        x -> line numbers and lines and files
+        y -> only lines and line numbers
+        z -> only files
+    """
     x = []
     y = []
     z = []
     try:
-        lines_with_matches = search_in_file(file=rf"{path}", needle=pattern)[index]
+        lines_with_matches = search_in_file(file=rf"{path}", needle=pattern)[0]
     except:
         quit()
     else:
@@ -15,36 +29,50 @@ def innersearch_file(path, pattern, index):
             z.append(path)
         for k, l in lines_with_matches.items():
             for m in l:
-                x.append(f'Line {k}: {m}')
-                y.append(f'Line {k}: {m}')
+                x.append(f"Line {k}: {m}")
+                y.append(f"Line {k}: {m}")
     return x, y, z
 
-def innersearch_folder(path, pattern, index):
+
+def innersearch_folder(path, pattern):
+    """
+    Searches for a specific pattern in files within a directory
+
+    Args:
+        path (str): takes a file or directory path
+        pattern (str): takes a regex string as argument
+
+    Returns:
+        tupple[list[str], list[str], list[str]]:
+        x -> line numbers and lines and files
+        y -> only lines and line numbers
+        z -> only files
+    """
     x = []
     y = []
     z = []
     for i in os.walk(path):
         for j in i[2]:
             try:
-                lines_with_matches = search_in_file(file=rf"{i[0]}/{j}", needle=pattern)[index]
+                lines_with_matches = search_in_file(
+                    file=rf"{i[0]}/{j}", needle=pattern
+                )[1]
             except:
-                         continue
+                continue
             finally:
                 if lines_with_matches:
-                    x.append(f'{i[0]}/{j}')
-                    z.append(f'{i[0]}/{j}')
-                for k, l in lines_with_matches.items():
-                    x.append(f'Line {k}: {l}')
-                    y.append(f'Line {k}: {l}')    
+                    x.append(f"{i[0]}/{j}")
+                    z.append(f"{i[0]}/{j}")
                 for k, l in lines_with_matches.items():
                     for m in l:
-                        x.append(f'Line {k}: {m}')  
-                        y.append(f'Line {k}: {m}')
-    return x, y, z    
+                        x.append(f"Line {k}: {m}")
+                        y.append(f"Line {k}: {m}")
+    return x, y, z
+
 
 def search(path, pattern: str, inverse=False):
     """
-
+    Searches for a specific pattern in a directory or a single file
 
     Args:
         path (str): takes a file or directory path
@@ -52,19 +80,19 @@ def search(path, pattern: str, inverse=False):
         inverse (bool): takes a boolean which inverts the result
 
     Returns:
-        tupple[list[str], list[str], list[str]]: 
+        tupple[list[str], list[str], list[str]]:
         x -> line numbers and lines and files
         y -> only lines and line numbers
         z -> only files
     """
     if not inverse:
         if os.path.isfile(path):
-            x, y, z = innersearch_file(path=path, pattern=pattern, index=0)
+            x, y, z = innersearch_file(path=path, pattern=pattern)
         else:
-            x, y, z = innersearch_folder(path=path, pattern=pattern, index=0)                           
+            x, y, z = innersearch_folder(path=path, pattern=pattern)
     else:
         if os.path.isfile(path):
-            x, y, z = innersearch_file(path=path, pattern=pattern, index=1)
+            x, y, z = innersearch_file(path=path, pattern=pattern)
         else:
-            x, y, z = innersearch_folder(path=path, pattern=pattern, index=1)                             
+            x, y, z = innersearch_folder(path=path, pattern=pattern)
     return x, y, z
