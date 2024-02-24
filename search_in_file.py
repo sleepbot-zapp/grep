@@ -2,13 +2,14 @@ import re
 from colorama import Fore as F, Back as B
 
 
-def search_in_file(file, needle: str):
+def search_in_file(file, needle: str, is_casinsesitive=False):
     """
     Searches for required match type in a specified file
 
     Args:
         file (file): takes file as argument
         needle (str): takes a regex string as argument
+        is_casinsesitive (bool): toggles case sensitivity
 
     Returns:
         dict[int, list[str]]: returns a dictionary with matched lines for each line
@@ -20,7 +21,7 @@ def search_in_file(file, needle: str):
         lines = f.readlines()
         for i in lines:
             i = i.replace("\n", "") if needle != r"\n" else i
-            x = re.finditer(rf"{needle}", i)
+            x = re.finditer(rf"{needle}", i if not is_casinsesitive else i.lower())
             s = list(x)
             if s:
                 for j in s:
