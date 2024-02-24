@@ -14,7 +14,8 @@ from search import search
 @click.option("-i", is_flag=True)
 @click.argument("pattern", required=True)
 def grep(path, c, h, l, n, v, w, i, pattern):
-    pattern = pattern.lower()
+    if i:
+        pattern = pattern.lower()
     pattern = rf"(?<!\w){pattern}(?!\w)" if w else pattern
     data = search(path=path, pattern=pattern, inverse=True if v else False)
     if c:
