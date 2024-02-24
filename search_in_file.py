@@ -2,7 +2,7 @@ import re
 from colorama import Fore as F, Back as B
 
 
-def search_in_file(file, needle: str, is_casinsesitive=False):
+def search_in_file(file, needle: str):
     """
     Searches for required match type in a specified file
 

@@ -7,21 +7,20 @@ TODO: Implement flag -i
 
 @click.command()
 @click.argument("path", required=True)
-@click.option("-c", is_flag=True)
-@click.option("-h", is_flag=True)
-@click.option("-l", is_flag=True)
-@click.option("-n", is_flag=True)
-@click.option("-v", is_flag=True)
-@click.option("-w", is_flag=True)
+@click.option("-c", is_flag=True, help="Count of lines that match the pattern")
+@click.option("-h", is_flag=True, help="Gives line count and lines no file names")
+@click.option("-l", is_flag=True, help="Gives Lonly file names")
+@click.option("-n", is_flag=True, help="Gives Line Count and Lines with file names")
+@click.option("-v", is_flag=True, help="Inverses the result")
+@click.option("-w", is_flag=True, help="Matches lines with whole words")
 #@click.option("-i", is_flag=True)
 @click.argument("pattern", required=True)
-def grep(path, c, h, l, n, v, w, pattern, i=False, ):
-
+def grep(path, c, h, l, n, v, w, pattern):
     #pattern = pattern.lower() if i else pattern
     pattern = rf"(?<!\w){pattern}(?!\w)" if w else pattern
     data = search(path=path, pattern=pattern, inverse=True if v else False)
     if c:
-        click.echo(len(data[0]))
+        click.echo(len(data[1]))
     elif h:
         for i in data[1]:
             click.echo(i)

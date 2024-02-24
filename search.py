@@ -61,8 +61,7 @@ def innersearch_folder(path, pattern, index: bool):
         for j in i[2]:
             try:
                 lines_with_matches = search_in_file(
-                    file=rf"{i[0]}/{j}", needle=pattern
-                )[index]
+                    file=rf"{i[0]}/{j}", needle=pattern)[index]
             except:
                 continue
             finally:
