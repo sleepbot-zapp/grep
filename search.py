@@ -9,12 +9,15 @@ def innersearch_file(path: str, pattern: str, index: bool):
     Args:
         path (str): takes a file or directory path
         pattern (str): takes a regex string as argument
+        index (bool): takes a integer among [0, 1] as input
+            0 -> normal
+            1 -> inverted
 
     Returns:
         tupple[list[str], list[str], list[str]]:
-        x -> line numbers and lines and files
-        y -> only lines and line numbers
-        z -> only files
+            x -> line numbers and lines and files
+            y -> only lines and line numbers
+            z -> only files
     """
     x = []
     y = []
@@ -41,6 +44,9 @@ def innersearch_folder(path, pattern, index: bool):
     Args:
         path (str): takes a file or directory path
         pattern (str): takes a regex string as argument
+        index (bool): takes a integer among [0, 1] as input
+            0 -> normal
+            1 -> inverted
 
     Returns:
         tupple[list[str], list[str], list[str]]:
