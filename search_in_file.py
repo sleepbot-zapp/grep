@@ -2,7 +2,7 @@ import re
 from colorama import Fore as F, Back as B
 
 
-def search_in_file(file, needle: str):
+def search_in_file(file, needle: str) -> tuple[dict[int, list[str]], dict[int, list[str]]]:
     """
     Searches for required match type in a specified file
 
@@ -15,10 +15,10 @@ def search_in_file(file, needle: str):
         dict[int, list[str]]: returns a dictionary with matched lines for each line
     """
     with open(file) as f:
-        line_number = 1
+        line_number: int = 1
         lines_with_matches: dict[int, list[str]] = dict()
         lines_without_matches: dict[int, list[str]] = dict()
-        lines = f.readlines()
+        lines: list[str] = f.readlines()
         for i in lines:
             i = i.replace("\n", "") if needle != r"\n" else i
             x = re.finditer(rf"{needle}", i)

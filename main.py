@@ -15,10 +15,10 @@ TODO: Implement flag -i
 @click.option("-w", is_flag=True, help="Matches lines with whole words")
 #@click.option("-i", is_flag=True)
 @click.argument("pattern", required=True)
-def grep(path, c, h, l, n, v, w, pattern):
+def grep(path: str, c, h, l, n, v, w, pattern: str) -> None:
     #pattern = pattern.lower() if i else pattern
     pattern = rf"(?<!\w){pattern}(?!\w)" if w else pattern
-    data = search(path=path, pattern=pattern, inverse=True if v else False)
+    data: tuple[list[str], list[str], list[str]] = search(path=path, pattern=pattern, inverse=True if v else False)
     if c:
         click.echo(len(data[1]))
     elif h:
