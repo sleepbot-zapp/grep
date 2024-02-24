@@ -2,7 +2,7 @@ import os
 from search_in_file import search_in_file
 
 
-def innersearch_file(path: str, pattern: str):
+def innersearch_file(path: str, pattern: str, index: bool):
     """
     Searches for a specific pattern in a single file
 
@@ -20,7 +20,7 @@ def innersearch_file(path: str, pattern: str):
     y = []
     z = []
     try:
-        lines_with_matches = search_in_file(file=rf"{path}", needle=pattern)[0]
+        lines_with_matches = search_in_file(file=rf"{path}", needle=pattern)[index]
     except:
         quit()
     else:
@@ -34,7 +34,7 @@ def innersearch_file(path: str, pattern: str):
     return x, y, z
 
 
-def innersearch_folder(path, pattern):
+def innersearch_folder(path, pattern, index: bool):
     """
     Searches for a specific pattern in files within a directory
 
@@ -54,9 +54,7 @@ def innersearch_folder(path, pattern):
     for i in os.walk(path):
         for j in i[2]:
             try:
-                lines_with_matches = search_in_file(
-                    file=rf"{i[0]}/{j}", needle=pattern
-                )[1]
+                lines_with_matches = search_in_file(file=rf"{i[0]}/{j}", needle=pattern)[index]
             except:
                 continue
             finally:
@@ -87,12 +85,12 @@ def search(path, pattern: str, inverse=False):
     """
     if not inverse:
         if os.path.isfile(path):
-            x, y, z = innersearch_file(path=path, pattern=pattern)
+            x, y, z = innersearch_file(path=path, pattern=pattern, index=0)
         else:
-            x, y, z = innersearch_folder(path=path, pattern=pattern)
+            x, y, z = innersearch_folder(path=path, pattern=pattern, index=0)
     else:
         if os.path.isfile(path):
-            x, y, z = innersearch_file(path=path, pattern=pattern)
+            x, y, z = innersearch_file(path=path, pattern=pattern, index=1)
         else:
-            x, y, z = innersearch_folder(path=path, pattern=pattern)
+            x, y, z = innersearch_folder(path=path, pattern=pattern, index=1)
     return x, y, z
