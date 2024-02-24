@@ -14,8 +14,12 @@ from search import search
 @click.argument("pattern", required=True)
 def grep(path, c, h, l, n, v, w, pattern):
     # pattern = rf" {pattern} " if w else pattern
-    data = search(path=path, pattern=pattern, inverse=True) if v else search(path=path, pattern=pattern) 
-    #data = search(path=path, pattern=pattern, inverse=False)
+    data = (
+        search(path=path, pattern=pattern, inverse=True)
+        if v
+        else search(path=path, pattern=pattern)
+    )
+    # data = search(path=path, pattern=pattern, inverse=False)
     if c:
         click.echo(len(data[0]))
     elif h:

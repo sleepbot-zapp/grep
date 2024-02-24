@@ -25,9 +25,29 @@ def search_in_file(file, needle: str):
             if s:
                 for j in s:
                     try:
-                        lines_with_matches[line_number].append(F.GREEN+i[:j.span()[0]]+F.RESET+B.RED+i[j.span()[0]:j.span()[1]]+F.GREEN+B.RESET+i[j.span()[1]:]+F.RESET)
+                        lines_with_matches[line_number].append(
+                            F.GREEN
+                            + i[: j.span()[0]]
+                            + F.RESET
+                            + B.RED
+                            + i[j.span()[0] : j.span()[1]]
+                            + F.GREEN
+                            + B.RESET
+                            + i[j.span()[1] :]
+                            + F.RESET
+                        )
                     except KeyError:
-                        lines_with_matches[line_number] = [F.GREEN+i[:j.span()[0]]+F.RESET+B.RED+i[j.span()[0]:j.span()[1]]+F.GREEN+B.RESET+i[j.span()[1]:]+F.RESET]
+                        lines_with_matches[line_number] = [
+                            F.GREEN
+                            + i[: j.span()[0]]
+                            + F.RESET
+                            + B.RED
+                            + i[j.span()[0] : j.span()[1]]
+                            + F.GREEN
+                            + B.RESET
+                            + i[j.span()[1] :]
+                            + F.RESET
+                        ]
             else:
                 lines_without_matches[line_number] = [F.RED + i + F.RESET]
             line_number += 1
