@@ -16,8 +16,8 @@ pip install -r requirements. txt
 ```
 
 ```
-Windows : py path_to_you_file\grep\main.py <PATH> <OPTIONS> <PATTERN>
-Linux : python3 path_to_you_file\grep\main.py <PATH> <OPTIONS> <PATTERN>
+Windows : py path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
+Linux : python3 path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
 ```
 
 Currently support for the following commands are functional
