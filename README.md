@@ -12,12 +12,12 @@ $ git clone https://github.com/sleepbot-zapp/grep <grep>
 Inorder to get started consider doing the following :
 
 ```
-pip install -r requirements. txt
+$ pip install -r requirements. txt
 ```
 
 ```
-Windows : py path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
-Linux : python3 path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
+Windows : $ py path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
+Linux : $ python3 path_to_directory\grep\main.py <PATH> <OPTIONS> <PATTERN>
 ```
 
 Currently support for the following commands are functional
