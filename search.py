@@ -23,7 +23,7 @@ def innersearch_file(path: str, pattern: str, index: bool) -> tuple[list[str], l
     y = []
     z = []
     try:
-        lines_with_matches = search_in_file(file=rf"{path}", needle=pattern)[index]
+        lines_with_matches: dict[list[str]] = search_in_file(file=rf"{path}", needle=pattern)[index]
     except:
         quit()
     else:
@@ -60,7 +60,7 @@ def innersearch_folder(path: str, pattern, index: bool) -> tuple[list[str], list
     for i in os.walk(path):
         for j in i[2]:
             try:
-                lines_with_matches = search_in_file(
+                lines_with_matches: dict[list[str]] = search_in_file(
                     file=rf"{i[0]}/{j}", needle=pattern)[index]
             except:
                 continue
