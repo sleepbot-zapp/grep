@@ -25,7 +25,7 @@ Currently support for the following commands are functional
 ```
   -c      Count of lines that match the pattern
   -h      Gives line count and lines no file names
-  -l      Gives Lonly file names
+  -l      Gives only file names
   -n      Gives Line Count and Lines with file names
   -v      Inverses the result
   -w      Matches lines with whole words
