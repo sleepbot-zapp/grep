@@ -1,8 +1,9 @@
 import re
 from colorama import Fore as F, Back as B
+from io import TextIOWrapper
 
 
-def search_in_file(file, needle: str) -> tuple[dict[int, list[str]], dict[int, list[str]]]:
+def search_in_file(file: TextIOWrapper, needle: str) -> tuple[dict[int, list[str]], dict[int, list[str]]]:
     """
     Searches for required match type in a specified file
 

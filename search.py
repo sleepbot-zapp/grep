@@ -37,7 +37,7 @@ def innersearch_file(path: str, pattern: str, index: bool) -> tuple[list[str], l
     return x, y, z
 
 
-def innersearch_folder(path, pattern, index: bool) -> tuple[list[str], list[str], list[str]]:
+def innersearch_folder(path: str, pattern, index: bool) -> tuple[list[str], list[str], list[str]]:
     """
     Searches for a specific pattern in files within a directory
 
@@ -75,7 +75,7 @@ def innersearch_folder(path, pattern, index: bool) -> tuple[list[str], list[str]
     return x, y, z
 
 
-def search(path, pattern: str, inverse=False) -> tuple[list[str], list[str], list[str]]:
+def search(path: str, pattern: str, inverse=False) -> tuple[list[str], list[str], list[str]]:
     """
     Searches for a specific pattern in a directory or a single file
 
