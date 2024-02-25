@@ -1,9 +1,6 @@
 import click
 from colorama import Fore
 from search import search
-"""
-TODO: Implement flag -i 
-"""
 
 @click.command()
 @click.argument("path", required=True)
@@ -13,10 +10,8 @@ TODO: Implement flag -i
 @click.option("-n", is_flag=True, help="Gives Line Count and Lines with file names")
 @click.option("-v", is_flag=True, help="Inverses the result")
 @click.option("-w", is_flag=True, help="Matches lines with whole words")
-#@click.option("-i", is_flag=True)
 @click.argument("pattern", required=True)
 def grep(path: str, c, h, l, n, v, w, pattern: str) -> None:
-    #pattern = pattern.lower() if i else pattern
     pattern = rf"(?<!\w){pattern}(?!\w)" if w else pattern
     data: tuple[list[str], list[str], list[str]] = search(path=path, pattern=pattern, inverse=True if v else False)
     if c:
